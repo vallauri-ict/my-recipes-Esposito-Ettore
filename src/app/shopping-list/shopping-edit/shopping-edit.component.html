@@ -4,17 +4,17 @@
         <form action="">
             <div class="row">
                 <div class="col-sm-5 form-group">
-                    <label> Name: <input type="text" id="name" class="form-control"/> </label>
+                    <label> Name: <input type="text" id="name" class="form-control" [(ngModel)]="ingredientName" [ngModelOptions]="{standalone: true}"/> </label>
                 </div>
                 <div class="col-sm-2 form-group">
-                    <label> Amount: <input type="number" id="amount" class="form-control"/> </label>
+                    <label> Amount: <input type="number" id="amount" class="form-control" [(ngModel)]="ingredientAmount" [ngModelOptions]="{standalone: true}"/> </label>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <button type="button" class="btn btn-success"> Add </button>
-                    <button type="button" class="btn btn-danger"> Delete </button>
-                    <button type="button" class="btn btn-primary"> Clear </button>
+                    <button type="button" class="btn btn-success" [disabled]="!ingredientName" (click)="addIngredient()"> Add </button>
+                    <button type="button" class="btn btn-danger" (click)="deleteIngredient()"> Delete </button>
+                    <button type="button" class="btn btn-primary" (click)="clearIngrediens()"> Clear </button>
                 </div>
             </div>
         </form>
