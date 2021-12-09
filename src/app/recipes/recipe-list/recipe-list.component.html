@@ -6,6 +6,8 @@
 
 <div class="row">   
     <div class="col-xs-12">
-        <app-recipe-item *ngFor="let item of recipes" [Recipe]="item">  </app-recipe-item>
+        <app-recipe-item *ngFor="let item of recipes" [Recipe]="item" (recipeSelected)="onRecipeSelected(item)">  </app-recipe-item>
+        <!-- <app-recipe-item [Recipe]="recipes[0]">  </app-recipe-item> -->
+        <!-- <div *ngFor="let item of recipes"> {{ item.name }} - {{ item.description }} - {{ item.imagePath }} </div> -->
     </div>
 </div>
