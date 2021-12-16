@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { RecipeModel } from 'src/app/models/recipe.model';
+import { DataStorageService } from './data-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RecipesService {
+export class RecipeService {
 
   recipes :RecipeModel[] = [];
+  selectedRecipe :RecipeModel;
   /*recipes :RecipeModel[] = [
     new RecipeModel("Spaghetti alla chitarra", "Si tratta di un tipo di pasta a sezione quadrata: la larghezza del taglio è di 2 mm e lo spessore è circa lo stesso", "https://www.buttalapasta.it/wp-content/uploads/spaghetti-alla-chitarra-2-1200x898.jpg"),
     new RecipeModel("Lasagne alla bolognese", "Le lasagne al forno sono costituite da una sfoglia di pasta all'uovo tagliata in fogli grossolanamente rettangolari detti lasagne, le quali, una volta bollite e scolate, vengono disposte in una sequenza di strati, separati da una farcitura che varia in relazione alle diverse tradizioni locali", "https://www.aiafood.com/sites/default/files/styles/scale_1920/public/recipes/lasagne.jpg?itok=y1YTJOv-"),
@@ -14,7 +16,13 @@ export class RecipesService {
     new RecipeModel("Tiramisù", "Il tiramisù è un dolce e prodotto agroalimentare tradizionale diffuso in tutto il territorio italiano", "https://www.buttalapasta.it/wp-content/uploads/2017/10/tiramisu-con-panna.jpg")
   ];*/
 
-  constructor() { 
-    
+  constructor(private dataStorageService :DataStorageService) { }
+
+  public getRecipes() {
+    this.dataStorageService.SendGetRequest("recipes").subscribe(data => {
+      this.recipes = data as RecipeModel[];
+      this.selectedRecipe = this.recipes[0];
+    }, 
+    err => console.log(err));
   }
 }
