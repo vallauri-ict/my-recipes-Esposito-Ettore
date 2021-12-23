@@ -1,9 +1,9 @@
 <div class="row">   
     <div class="col-xs-10">
-        <app-shopping-edit (ingredientAdded)="onIngredientAdd($event)">  </app-shopping-edit>
+        <app-shopping-edit>  </app-shopping-edit>
         <hr/>
         <ul class="list-group">
-            <a href="#" class="list-group-item" *ngFor="let Ingredient of ingredients"> {{ Ingredient.name }} - {{ Ingredient.amount }} </a>
+            <a href="#" class="list-group-item" *ngFor="let Ingredient of shoppingListService.ingredients"> {{ Ingredient.name }} - {{ Ingredient.amount }} </a>
         </ul>
     </div>
 </div>

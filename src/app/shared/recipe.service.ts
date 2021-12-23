@@ -21,7 +21,6 @@ export class RecipeService {
   public getRecipes() {
     this.dataStorageService.SendGetRequest("recipes").subscribe(data => {
       this.recipes = data as RecipeModel[];
-      //this.selectedRecipe = this.recipes[0];
     }, 
     err => console.log(err));
   }
