@@ -8,17 +8,11 @@ import { DataStorageService } from './data-storage.service';
 export class ShoppingListService {
   ingredients :IngredientModel[];
 
-  /* ingredients :IngredientModel[] = [
-    new IngredientModel("Pasta", 500),
-    new IngredientModel("Pomodoro", 2)
-  ]; */
-
   constructor(private dataStorageService :DataStorageService) { }
 
   public getIngredients() {
     this.dataStorageService.SendGetRequest("shopping-list").subscribe(data => {
       this.ingredients = data as IngredientModel[];
-      console.log(this.ingredients);
     }, 
     err => console.log(err));
   }

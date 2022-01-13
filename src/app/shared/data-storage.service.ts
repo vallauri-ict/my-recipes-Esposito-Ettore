@@ -6,7 +6,8 @@ import { Injectable } from '@angular/core';
 })
 export class DataStorageService {
 
-  private REST_API_SERVER = "http://localhost:1337/api/";
+  //private REST_API_SERVER = "http://localhost:3000/"; //json-server
+  private REST_API_SERVER = "http://localhost:1337/api/"; //crude server
 
   constructor(private httpClient :HttpClient) {
 
