@@ -1,7 +1,7 @@
 import { IngredientModel } from "./ingredient.model";
 
 export class RecipeModel {
-    public id :string;
+    public _id :any;
     public name :string;
     public description :string;
     public imagePath :string;

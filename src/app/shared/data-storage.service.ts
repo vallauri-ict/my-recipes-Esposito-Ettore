@@ -15,4 +15,19 @@ export class DataStorageService {
   public SendGetRequest(endPoint :string) {
     return this.httpClient.get(this.REST_API_SERVER + endPoint);
   }
+
+  public SendPostRequest(endPoint :string, data :any) {
+    this.httpClient.post(this.REST_API_SERVER + endPoint, data)
+        .subscribe(succ => console.log(succ), err => console.log(err));
+  }
+
+  public SendPatchRequest(endPoint :string, data :any) {
+    this.httpClient.patch(this.REST_API_SERVER + endPoint, data)
+        .subscribe(succ => console.log(succ), err => console.log(err));
+  }
+
+  public SendDeleteRequest(endPoint :string, data :any) {
+    this.httpClient.delete(this.REST_API_SERVER + endPoint, data)
+        .subscribe(succ => console.log(succ), err => console.log(err));
+  }
 }

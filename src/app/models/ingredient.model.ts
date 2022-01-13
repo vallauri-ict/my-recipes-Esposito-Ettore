@@ -1,5 +1,5 @@
 export class IngredientModel {
-    public id :number;
+    public _id :any;
     public name :string;
     public amount :number;
 

@@ -18,6 +18,7 @@ export class ShoppingListService {
   public getIngredients() {
     this.dataStorageService.SendGetRequest("shopping-list").subscribe(data => {
       this.ingredients = data as IngredientModel[];
+      console.log(this.ingredients);
     }, 
     err => console.log(err));
   }
@@ -28,13 +29,18 @@ export class ShoppingListService {
     for(let item of this.ingredients)
       if(item.name.toLowerCase() == ingredient.name.toLowerCase())
       {
+        console.log(item);
         item.amount += ingredient.amount;
+        this.dataStorageService.SendPatchRequest("shopping-list/" + item._id, { "amount" : item.amount });
         found = true;
         break;
       }
 
     if(!found)
+    {
       this.ingredients.push(ingredient);
+      this.dataStorageService.SendPostRequest("shopping-list", ingredient);
+    }
   }
 
   public addIngredients(ingredients :IngredientModel[]) {
