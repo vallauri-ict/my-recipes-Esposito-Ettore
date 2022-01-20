@@ -4,19 +4,19 @@
             <button type="button" class="navbar-toggle" (click)="collapsed = !collapsed">
                 <span class="icon-bar" *ngFor="let i of [1, 2, 3]"> <!-- linea orizzontale ripetuta tre volte --> </span>
             </button>
-            <a href="#" class="navbar-brand"> Recipe book </a>
+            <a [routerLink]="['/']" class="navbar-brand"> Recipe book </a>
         </div>
         <div class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
             <ul class="nav navbar-nav"> 
-                <li> <a href="#" (click)="onSelect('recipes')"> Recipes </a> </li>
-                <li> <a href="#" (click)="onSelect('shopping-list')"> Shopping list </a> </li>
+                <li routerLinkActive="active"> <a [routerLink]="['/recipes']"> Recipes </a> </li>
+                <li routerLinkActive="active"> <a [routerLink]="['/shopping-list']"> Shopping list </a> </li>
             </ul>
             <ul class="nav navber-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle"  role="button"> Manage <span class="caret"> <!-- freccia verso il basso --> </span> </a>
+                    <a class="dropdown-toggle" role="button"> Manage <span class="caret"> <!-- freccia verso il basso --> </span> </a>
                     <ul class="dropdown-menu">
-                        <li> <a href="#"> Save data </a> </li>
-                        <li> <a href="#"> Fetch data </a> </li>
+                        <li> <a> Save data </a> </li>
+                        <li> <a> Fetch data </a> </li>
                     </ul>
                 </li>
             </ul>

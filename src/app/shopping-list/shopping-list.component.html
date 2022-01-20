@@ -3,7 +3,7 @@
         <app-shopping-edit>  </app-shopping-edit>
         <hr/>
         <ul class="list-group">
-            <a href="#" class="list-group-item" *ngFor="let Ingredient of shoppingListService.ingredients"> {{ Ingredient.name }} - {{ Ingredient.amount }} </a>
+            <a class="list-group-item" *ngFor="let Ingredient of shoppingListService.ingredients" appHighlight> {{ Ingredient.name }} - {{ Ingredient.amount }} </a>
         </ul>
     </div>
 </div>
