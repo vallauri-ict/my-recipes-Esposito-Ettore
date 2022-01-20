@@ -4,20 +4,24 @@ import { Directive, HostBinding, HostListener, Input, OnInit } from '@angular/co
   selector: '[appHighlight]'
 })
 export class HighlightDirective implements OnInit{
-  @Input('appHighlight') hoverColor:string = 'Cyan';
-  @Input() defaultColor:string = 'LightCyan';
-  @HostBinding('style.bacgroundColor') backgroundColor:string = this.defaultColor;
-  @HostListener('mouseenter')evidenzia(){
-    this.backgroundColor = this.hoverColor;
+  defaultHoverColor :string = '#C0FFFF';
+  defaultBackColor :string = 'LightCyan';
+
+  @Input('appHighlight') hoverColor :any = this.defaultHoverColor;
+  @Input() defaultColor :string = this.defaultBackColor;
+  @HostBinding('style.backgroundColor') backgroundColor :string = this.defaultColor;
+
+  @HostListener('mouseenter') evidenzia () {
+    this.backgroundColor = this.hoverColor ? this.hoverColor : this.defaultHoverColor;
   }
 
-  @HostListener('mouseleave')rilascia(){
-    this.backgroundColor = this.defaultColor;
+  @HostListener('mouseleave') rilascia () {
+    this.backgroundColor = this.defaultColor ? this.defaultColor : this.defaultBackColor;
   }
 
   constructor() { }
+
   ngOnInit(): void {
     this.backgroundColor = this.defaultColor;
   }
-
 }

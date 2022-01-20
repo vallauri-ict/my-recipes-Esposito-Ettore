@@ -7,7 +7,8 @@ import { Injectable } from '@angular/core';
 export class DataStorageService {
 
   //private REST_API_SERVER = "http://localhost:3000/"; //json-server
-  private REST_API_SERVER = "http://localhost:1337/api/"; //crude server
+  //private REST_API_SERVER = "http://localhost:1337/api/"; //crude server
+  private REST_API_SERVER = "https://esposito-ettore-crudserver.herokuapp.com/api/"; //heroku srvere
 
   constructor(private httpClient :HttpClient) {
 
