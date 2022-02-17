@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { RecipesComponent } from './recipes/recipes.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
+import { RecipeDatailComponent } from './recipes/recipe-detail/recipe-datail.component';
+import { RecipeStartComponent } from './recipes/recipe-detail/recipe-start/recipe-start.component';
 
 const appRoutes :Routes = [
   {
@@ -12,7 +14,11 @@ const appRoutes :Routes = [
   },
   {
     "path" : "recipes",
-    "component" : RecipesComponent
+    "component" : RecipesComponent,
+    "children" : [
+      { "path" : "", "component" : RecipeStartComponent },
+      { "path" : ":id", "component" : RecipeDatailComponent }
+    ]
   },
   {
     "path" : "shopping-list",
