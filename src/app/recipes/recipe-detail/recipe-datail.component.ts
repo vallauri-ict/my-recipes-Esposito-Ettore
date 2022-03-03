@@ -26,4 +26,9 @@ export class RecipeDatailComponent implements OnInit {
   onEditRecipe() {
     this.router.navigate(["edit"], { relativeTo : this.activatedRoute });
   }
+
+  onDeleteRecipe() {
+    if(confirm("Are you sure you want to delete this recipe"))
+      this.recipeService.deleteRecipe();
+  }
 }

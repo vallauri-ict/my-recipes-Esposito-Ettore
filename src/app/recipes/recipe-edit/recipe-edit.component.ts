@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { IngredientModel } from 'src/app/models/ingredient.model';
-import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { RecipeService } from 'src/app/shared/recipe.service';
 
 @Component({
@@ -10,13 +9,15 @@ import { RecipeService } from 'src/app/shared/recipe.service';
   styleUrls: ['./recipe-edit.component.css']
 })
 export class RecipeEditComponent implements OnInit {
-  constructor(public recipeService :RecipeService, private dataStorageService :DataStorageService, private router :Router, private activatedRoute :ActivatedRoute) { }
+  constructor(public recipeService :RecipeService, private router :Router, private activatedRoute :ActivatedRoute) { }
 
   recipeName :string = "";
   recipeDescription :string = "";
   recipeImagePath :string = "";
   recipeIngredients :string = "";
   buttonText :string = "";
+
+  base64image :any = "";
 
   editMode :string = "";
 
@@ -47,6 +48,8 @@ export class RecipeEditComponent implements OnInit {
 
   onSave() {
     let ingredients = this.manageIngredients(this.recipeIngredients);
+    if(this.recipeImagePath.indexOf("fakepath") != -1)
+      this.recipeImagePath = this.base64image;
     let recipe = {
       "name" : this.recipeName,
       "description" : this.recipeDescription,
@@ -57,14 +60,12 @@ export class RecipeEditComponent implements OnInit {
     switch(this.editMode)
     {
       case "add":
-        this.dataStorageService.SendPostRequest("recipes", recipe);
+        this.recipeService.postRecipe(recipe);
         break;
       case "edit":
-        this.dataStorageService.SendPatchRequest("recipes", recipe);
+        this.recipeService.patchRecipe(recipe);
         break;
     }
-    alert("Recipe saved");
-    this.router.navigate(["recipes"]);
   }
 
   private manageIngredients (ingredients :string) :IngredientModel[] {
@@ -77,5 +78,15 @@ export class RecipeEditComponent implements OnInit {
           retVal.push(new IngredientModel(props[0], parseInt(props[1])));
         }
     return retVal;
+  }
+
+  public onSelectFile(event :any) {
+    if(event.target.files && event.target.files[0])
+    {
+      let filePath = event.target.files[0];
+      let reader = new FileReader();
+      reader.readAsDataURL(filePath);
+      reader.onload = () => this.base64image = reader.result?.toString();
+    }
   }
 }

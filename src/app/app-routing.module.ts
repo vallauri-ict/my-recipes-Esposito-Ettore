@@ -18,8 +18,8 @@ const appRoutes :Routes = [
     "component" : RecipesComponent,
     "children" : [
       { "path" : "", "component" : RecipeStartComponent },
-      { "path" : ":id", "component" : RecipeDatailComponent },
       { "path" : "new", "component" : RecipeEditComponent },
+      { "path" : ":id", "component" : RecipeDatailComponent },
       { "path" : ":id/edit", "component" : RecipeEditComponent }
     ]
   },
